@@ -1,4 +1,4 @@
-# Streamlit 2025
+# 	👀 Streamlit 2025
 
 This repository will be shared to support group final projects in the 2025 Digital Literacy and English Education course. Each group will **fork** this repository to their own GitHub account and use it as a base framework. Using this template, groups will modify the content and develop an English lesson project collaboratively.
 
