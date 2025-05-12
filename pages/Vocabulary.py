@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.write("Vocabulary learning")
+st.write("🐾 Vocabulary learning")
 
 tabs = st.tabs(["1. Tab1", "2. Tab2", "3. Tab3"])
 
