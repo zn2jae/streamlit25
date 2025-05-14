@@ -5,12 +5,20 @@ from io import BytesIO
 
 st.write("🐾 Vocabulary learning")
 
-tabs = st.tabs(["1. Lesson: Word list", "2. Activity: Listen to the word"])
+tab1, tab2 = st.tabs(["1. Lesson: Word list", "2. Activity: Listen to the word"])
 
-with tabs[0]:
-  st.write("Tab 1")
+with tab1:
+  st.markdown("### 📋 Word Frequency Table")
 
-with tabs[1]:
+   # Load CSV from GitHub (update the link below)
+  url = "https://raw.githubusercontent.com/MK316/Digital-Literacy-Class/refs/heads/main/data/word_frequency.csv"
+  df = pd.read_csv(url)
+
+    # Show table only when button is clicked
+  if st.button("Show Word List"):
+     st.dataframe(df, use_container_width=True)
+
+with tabs2:
 
   st.title("🔊 Word Pronunciation Practice")
   
