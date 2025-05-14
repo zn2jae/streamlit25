@@ -50,42 +50,49 @@ with tab2:
 ######### TAB 3
 
 with tab3:
-    st.markdown("### 🎧 Listen and Spell the Word")
-    st.caption("Click the button to hear a word. Type what you heard below.")
+    st.markdown("### 🎧 Listen and Type the Word")
+    st.caption("Click the button to hear a word. Then type it and press 'Check the answer'.")
 
     # Load CSV
-    url = "https://raw.githubusercontent.com/MK316/Digital-Literacy-Class/refs/heads/main/data/word_frequency.csv"
+    url = "https://raw.githubusercontent.com/your-username/your-repo/main/word_frequency.csv"  # Replace this!
     df = pd.read_csv(url)
     word_list = df["Word"].dropna().tolist()
 
-    # Initialize session state
+    # Initialize session state variables
     if "current_word" not in st.session_state:
         st.session_state.current_word = None
     if "audio_data" not in st.session_state:
         st.session_state.audio_data = None
     if "user_input" not in st.session_state:
         st.session_state.user_input = ""
+    if "check_clicked" not in st.session_state:
+        st.session_state.check_clicked = False
 
-    # Handle the "Let me listen to a word" button
+    # ▶️ Button to select and play a new random word
     if st.button("🔊 Let me listen to a word"):
         st.session_state.current_word = random.choice(word_list)
-        st.session_state.user_input = ""  # Reset input
+        st.session_state.user_input = ""
+        st.session_state.check_clicked = False
 
-        # Generate audio
         tts = gTTS(st.session_state.current_word, lang='en')
         audio_fp = BytesIO()
         tts.write_to_fp(audio_fp)
         audio_fp.seek(0)
         st.session_state.audio_data = audio_fp.read()
 
-    # Audio playback
+    # 🎧 Audio playback
     if st.session_state.audio_data:
         st.audio(st.session_state.audio_data, format='audio/mp3')
 
-    # Text input and answer check
-    st.session_state.user_input = st.text_input("Type the word you heard:", value=st.session_state.user_input, key="textbox")
+    # ✏️ Text input
+    st.session_state.user_input = st.text_input("Type the word you heard:", value=st.session_state.user_input)
 
-    if st.session_state.user_input and st.session_state.current_word:
+    # ✅ Check answer button
+    if st.button("✅ Check the answer"):
+        st.session_state.check_clicked = True
+
+    # 💬 Give feedback only after clicking the check button
+    if st.session_state.check_clicked and st.session_state.current_word:
         if st.session_state.user_input.strip().lower() == st.session_state.current_word.lower():
             st.success("✅ Correct!")
         else:
