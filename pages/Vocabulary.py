@@ -5,30 +5,19 @@ from io import BytesIO
 
 st.write("🐾 Vocabulary learning")
 
-tabs = st.tabs(["1. Tab1", "2. Tab2", "3. Tab3"])
+tabs = st.tabs(["1. Lesson: Word list", "2. Activity: Listen to the word"])
 
 with tabs[0]:
   st.write("Tab 1")
 
 with tabs[1]:
-  st.write("Tab 2")
-
-with tabs[2]:
-  st.write("Listen how to say the word")
-
-
-
-
 
   st.title("🔊 Word Pronunciation Practice")
   
   # --- Load CSV from GitHub ---
-  @st.cache_data
-  def load_data():
-      url = "https://raw.githubusercontent.com/MK316/Digital-Literacy-Class/refs/heads/main/data/word_frequency.csv"  # ← replace this!
-      return pd.read_csv(url)
-  
-  df = load_data()
+
+  url = "https://raw.githubusercontent.com/MK316/Digital-Literacy-Class/refs/heads/main/data/word_frequency.csv"  # ← replace this!
+  df = pd.read_csv(url)
   
   # --- Dropdown to select word ---
   st.markdown("## Select a word to hear its pronunciation")
