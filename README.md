@@ -6,6 +6,8 @@ This repository will be shared to support group final projects in the 2025 Digit
 
 After copying (forking) this repository, please take time to understand its structure. Then, discuss with your group which parts to modify for your project, and update the content accordingly.
 
+[link of the repository](https://github.com/MK316/streamlit25)
+
 ## Content to modify and develop
 
 + **Story text page (with images)**
