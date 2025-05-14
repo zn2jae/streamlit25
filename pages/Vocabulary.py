@@ -18,7 +18,7 @@ with tab1:
   if st.button("Show Word List"):
      st.dataframe(df, use_container_width=True)
 
-with tabs2:
+with tab2:
 
   st.title("🔊 Word Pronunciation Practice")
   
